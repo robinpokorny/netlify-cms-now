@@ -4,12 +4,15 @@ import { create } from "./_lib/oauth2";
 const render = (message: "success" | "error", content: Object) => `
 <script>
   const receiveMessage = (e) => {
-    console.log("receiveMessage %o", e);
+    console.log("received %o", e);
   
     window.opener.postMessage(
-      "authorization:github:${message}:${JSON.stringify(content)}",
+      \`authorization:github:${message}:${JSON.stringify(content)}\`,
       e.origin
     );
+
+    console.log( \`authorization:github:${message}:${JSON.stringify(content)}\`,
+    e.origin)
     window.removeEventListener("message", receiveMessage, false);
   }
   window.addEventListener("message", receiveMessage, false);

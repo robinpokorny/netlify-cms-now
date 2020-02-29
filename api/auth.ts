@@ -9,7 +9,8 @@ export default (req: NowRequest, res: NowResponse) => {
   console.log(host);
 
   const url = oauth2.authorizationCode.authorizeURL({
-    redirect_uri: `${host}/api/callback`,
+    //redirect_uri: `${host}/api/callback`,\    
+    redirect_uri: `https://netlify-cms-now.now.sh/api/callback`,
     scope: `repo,user`,
     state: randomString()
   });
