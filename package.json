@@ -1,0 +1,12 @@
+{
+  "name": "netlify-cms-now",
+  "author": "Robin Pokorny <me@robinpokorny.com>",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@now/node": "^1.4.1",
+    "@types/simple-oauth2": "^2.5.2",
+    "simple-oauth2": "^2.5.2"
+  }
+}
