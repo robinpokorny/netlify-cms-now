@@ -1,5 +1,4 @@
 import simpleOauthModule from "simple-oauth2";
-import crypto from "crypto";
 
 export const create = () =>
   simpleOauthModule.create({
@@ -14,4 +13,22 @@ export const create = () =>
     }
   });
 
-export const randomString = () => crypto.randomBytes(8).toString(`hex`);
+type RenderBody = {
+  (status: "success", content: { token: string; provider: "github" }): string;
+  (status: "error", content: Object): string;
+};
+export const renderBody: RenderBody = (status, content) => `
+<script>
+  const receiveMessage = (message) => {
+    window.opener.postMessage(
+      'authorization:github:${status}:${JSON.stringify(content)}',
+      message.origin
+    );
+
+    window.removeEventListener("message", receiveMessage, false);
+  }
+  window.addEventListener("message", receiveMessage, false);
+  
+  window.opener.postMessage("authorizing:github", "*");
+</script>
+`;

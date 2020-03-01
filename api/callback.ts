@@ -1,43 +1,26 @@
 import { NowRequest, NowResponse } from "@now/node";
-import { create } from "./_lib/oauth2";
-
-const render = (message: "success" | "error", content: Object) => `
-<script>
-  const receiveMessage = (e) => {
-    console.log("received %o", e);
-  
-    window.opener.postMessage(
-      \`authorization:github:${message}:${JSON.stringify(content)}\`,
-      e.origin
-    );
-
-    console.log( \`authorization:github:${message}:${JSON.stringify(content)}\`,
-    e.origin)
-    window.removeEventListener("message", receiveMessage, false);
-  }
-  window.addEventListener("message", receiveMessage, false);
-  
-  console.log("Sending message: %o", "github");
-  window.opener.postMessage("authorizing:github", "*");
-</script>
-`;
+import { create, renderBody } from "./_lib/oauth2";
 
 export default async (req: NowRequest, res: NowResponse) => {
+  const code = req.query.code as string;
+  const { host } = req.headers;
+
   const oauth2 = create();
 
-  const code = req.query.code as string;
-
   try {
-    const result = await oauth2.authorizationCode.getToken({ code });
-    const { token } = oauth2.accessToken.create(result);
+    const accessToken = await oauth2.authorizationCode.getToken({
+      code,
+      redirect_uri: `https://${host}/api/callback`
+    });
+    const { token } = oauth2.accessToken.create(accessToken);
 
     res.status(200).send(
-      render("success", {
+      renderBody("success", {
         token: token.access_token,
         provider: "github"
       })
     );
   } catch (e) {
-    res.status(200).send(render("error", e));
+    res.status(200).send(renderBody("error", e));
   }
 };
