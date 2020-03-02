@@ -1,9 +1,11 @@
 # Netlify CMS on ▲ Now
 > Use Netlify CMS with GitHub backend for sites hosted on [▲ Now](https://zeit.co/)
 
+[![github][gh-image]][gh-url]
 [![license][license-image]][license-url]
 [![git3moji][git3moji-image]][git3moji-url]
-[![][coffee-image]][coffee-url]
+![typescript][ts-image]
+[![buy-me-a-coffee][coffee-image]][coffee-url]
 
 A simple OAuth2 serverless gateway for Netlify CMS with GitHub written in TypeScript.
 
@@ -36,10 +38,13 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 
 
 <!-- Markdown link & img dfn's -->
+[gh-image]: https://img.shields.io/badge/robinpokorny-netlify--cms--now-lightgrey?style=flat-square&logo=github
+[gh-url]: https://github.com/robinpokorny/netlify-cms-now/
 [license-image]: https://img.shields.io/github/license/robinpokorny/netlify-cms-now?style=flat-square
 [license-url]: https://github.com/robinpokorny/netlify-cms-now/blob/master/LICENSE
 [git3moji-image]: https://img.shields.io/badge/git3moji-%E2%9A%A1%EF%B8%8F%F0%9F%90%9B%F0%9F%93%BA%F0%9F%91%AE%F0%9F%94%A4-fffad8.svg?style=flat-square
 [git3moji-url]: https://robinpokorny.github.io/git3moji/
+[ts-image]: https://img.shields.io/badge/types-TypeScript-blue?style=flat-square
 [coffee-url]: https://www.buymeacoffee.com/robinpokorny
-[coffee-image]: https://img.shields.io/badge/☕-Buy%20me%20a%20coffee-FF813F?style=flat-square
+[coffee-image]: https://img.shields.io/badge/Buy%20me%20a-coffee-FF813F?style=flat-square&logo=buy-me-a-coffee
 [new-issue]: https://github.com/robinpokorny/netlify-cms-now/issues/new
