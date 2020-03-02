@@ -110,3 +110,8 @@ Distributed under the MIT license. See [LICENSE][license-url] for more informati
 [coffee-url]: https://www.buymeacoffee.com/robinpokorny
 [coffee-image]: https://img.shields.io/badge/%20-Buy%20me%20a%20coffee-FF813F?style=flat-square&logo=buy-me-a-coffee&labelColor=FF813F&logoColor=white
 [new-issue]: https://github.com/robinpokorny/netlify-cms-now/issues/new
+
+<!--
+Generate HTML version from this file with https://github.com/joeyespo/grip:
+grip README.md --export index.html --title "Netlify CMS on ▲ Now"
+-->
