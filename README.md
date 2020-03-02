@@ -1,5 +1,5 @@
 # Netlify CMS on ▲ Now
-> Use Netlify CMS with GitHub backend for sites hosted on [▲ Now](https://zeit.co/)
+> Use [Netlify CMS](https://www.netlifycms.org/) with GitHub backend for sites hosted on [▲ Now](https://zeit.co/)
 
 [![github][gh-image]][gh-url]
 [![license][license-image]][license-url]
@@ -9,15 +9,73 @@
 
 A simple OAuth2 serverless gateway for Netlify CMS with GitHub written in TypeScript.
 
-## Basic usage
+## Why do I need this?
 
-Please follow these steps:
+If you would like to use Netlify CMS to manage your site deployed to ZEIT Now with GitHub as the site's repository.
 
-1. Change repo and url in `/admin/config.yml`.
-2. Set `oauth-client-id` and `oauth-client-secret` enviroment variables.
+GitHub requires a server for authentication and Netlify provides this server only for sites deployed to it. Fortunately, such server is rather small and can work with Now's serverless functions.
+
+## Usage
+
+### 1. Fork this project or copy files to an existing one
+The most important files and folders are: `admin/`, `api/`, `.env`, `now.json`, `package.json`. The rest depends on your static generator. We use `blog/` and `img/` for demo only.
+
+Register this project to Now.
+
+**Important**: The actual deployment will fail, we will fix it in the following steps.
+
+### 2. Decide on the production domain
+Authentication will work correctly only on the production domain, it will not work on development preview URLs. For this repo, the URL is `netlify-cms-now.now.sh`, but it could be any domain that Now supports, even custom domain. In the following `<domain>` represents your selected domain.
+
+### 3. Configure Netlify CMS
+Open `admin/config.yml` file. Here we need to update two fields:
+
+* Set `repo` to your GitHub repo that contains the source code of your site.
+* Set `base_url` to the production domain with HTTPS protocol, for example, `https://netlify-cms-now.now.sh`.
+
+You will need to change the rest of the configuration to match your repo structure. See [Netlify CMS docs]() for more details. This can be done later.
+
+### 4. Create a GitHub App
+On GitHub go to *Settings > Developer settings > GitHub Apps > New GitHub App* ([direct link](https://github.com/settings/apps/new)).
+
+Fill in any name and any homepage URL. The important field is *User authorization callback URL*, input `https://<domain>/api/callback`, where `<domain>` is domain from step 2, also note that HTTPS is required.
+
+Under *Repository permissions* set *Contents* to ‘Read & Write’.
+
+At the very bottom is a section called *Where can this GitHub App be installed?*. If you will be the only user, leave the default options. If there will be more contributors select ‘Any account’.
+
+Click on *Create GitHub App* button.
+
+On the next page, you should see *Client ID* and *Client secret*. We will use in the next step.
+
+**Note:** You might need to install the app to your account. Click on *Install App* in the right menu and install it to your account. This step will probably land on the specified callback URL which either is not yet deployed or is it blank. That's OK, you can navigate back to GitHub and ensure the app was installed.
+
+### 5. Set environment secrets
+Using Now CLI set the two secrets:
+
+```bash
+now secrets add oauth-client-id <client-id-of-GitHub-App>
+now secrets add oauth-client-secret <client-secret-of-GitHub-App>
+```
+
+### 6. Deploy your website
+Either run `now --prod` or use the GitHub integration to deploy your project to the production domain.
+
+Navigate to `https://<domain>/admin` and click on *Login with GitHub*. The first time you log in, you need to authorise your GitHub App. Make sure you give permissions to the right repo.
+
+After successful authentication, you should be redirected back to Netlify CMS interface.
+
+### 7. Enjoy! 🎉
+
 
 _In case of questions please file an [issue][new-issue]._
 
+
+## Links
+
+* [Netlify CMS](https://www.netlifycms.org/)
+* [Configuring GitHub Backend](https://www.netlifycms.org/docs/authentication-backends/#github-backend) in Netlify CMS docs
+* [Secrets in Now](https://zeit.co/docs/v2/serverless-functions/env-and-secrets), 
 
 ## Release History
 
@@ -26,13 +84,17 @@ _In case of questions please file an [issue][new-issue]._
 
 ## Attribution
 
+This project is inspired by:
+
+* [vencax/netlify-cms-github-oauth-provider](https://github.com/vencax/netlify-cms-github-oauth-provider) (Express.js)
+* [marksteele/netlify-serverless-oauth2-backend](https://github.com/marksteele/netlify-serverless-oauth2-backend) (AWS Lambda)
 
 
 ## Meta
 
 Robin Pokorny – [@robinpokorny](https://twitter.com/robinpokorny) – me@robinpokorny.com
 
-Distributed under the MIT license. See ``LICENSE`` for more information.
+Distributed under the MIT license. See [LICENSE][license-url] for more information.
 
 [https://github.com/robinpokorny/netlify-cms-now](https://github.com/robinpokorny/netlify-cms-now)
 
@@ -46,5 +108,5 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 [git3moji-url]: https://robinpokorny.github.io/git3moji/
 [ts-image]: https://img.shields.io/badge/types-TypeScript-blue?style=flat-square
 [coffee-url]: https://www.buymeacoffee.com/robinpokorny
-[coffee-image]: https://img.shields.io/badge/Buy%20me%20a-coffee-FF813F?style=flat-square&logo=buy-me-a-coffee
+[coffee-image]: https://img.shields.io/badge/%20-Buy%20me%20a%20coffee-FF813F?style=flat-square&logo=buy-me-a-coffee&labelColor=FF813F&logoColor=white
 [new-issue]: https://github.com/robinpokorny/netlify-cms-now/issues/new
