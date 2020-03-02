@@ -1,3 +1,5 @@
+<p align="right"><a href="https://github.com/robinpokorny/netlify-cms-now">robinpokorny/netlify-cms-now</a></p>
+
 # Netlify CMS on ▲ Now
 > Use [Netlify CMS](https://www.netlifycms.org/) with GitHub backend for sites hosted on [▲ Now](https://zeit.co/)
 
