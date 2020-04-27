@@ -1,7 +1,7 @@
 <p align="right"><a href="https://github.com/robinpokorny/netlify-cms-now">robinpokorny/netlify-cms-now</a></p>
 
-# Netlify CMS on ▲ Now
-> Use [Netlify CMS](https://www.netlifycms.org/) with GitHub backend for sites hosted on [▲ Now](https://zeit.co/)
+# Netlify CMS on ▲ ~~Now~~ Vercel
+> Use [Netlify CMS](https://www.netlifycms.org/) with GitHub backend for sites hosted on [▲ ~~Now~~ Vercel](https://vercel.com/)
 
 [![github][gh-image]][gh-url]
 [![license][license-image]][license-url]
@@ -13,16 +13,16 @@ A simple OAuth2 serverless gateway for Netlify CMS with GitHub written in TypeSc
 
 ## Why do I need this?
 
-If you would like to use Netlify CMS to manage your site deployed to ZEIT Now with GitHub as the site's repository.
+If you would like to use Netlify CMS to manage your site deployed to Vercel with GitHub as the site's repository.
 
-GitHub requires a server for authentication and Netlify provides this server only for sites deployed to it. Fortunately, such server is rather small and can work with Now's serverless functions.
+GitHub requires a server for authentication and Netlify provides this server only for sites deployed to it. Fortunately, such server is rather small and can work with Vercel's serverless functions.
 
 ## Usage
 
 ### 1. Fork this project or copy files to an existing one
 The most important files and folders are: `admin/`, `api/`, `.env`, `now.json`, `package.json`. The rest depends on your static generator. We use `blog/` and `img/` for demo only.
 
-Register this project to Now.
+Register this project to Vercel.
 
 **Important**: The actual deployment will fail, we will fix it in the following steps.
 
@@ -77,7 +77,7 @@ _In case of questions please file an [issue][new-issue]._
 
 * [Netlify CMS](https://www.netlifycms.org/)
 * [Configuring GitHub Backend](https://www.netlifycms.org/docs/authentication-backends/#github-backend) in Netlify CMS docs
-* [Secrets in Now](https://zeit.co/docs/v2/serverless-functions/env-and-secrets), 
+* [Secrets in Vercel](https://vercel.com/docs/v2/build-step#environment-variables), 
 
 ## Release History
 
@@ -115,5 +115,5 @@ Distributed under the MIT license. See [LICENSE][license-url] for more informati
 
 <!--
 Generate HTML version from this file with https://github.com/joeyespo/grip:
-grip README.md --export index.html --title "Netlify CMS on ▲ Now"
+grip README.md --export index.html --title "Netlify CMS on ▲ Vercel (Now)"
 -->
