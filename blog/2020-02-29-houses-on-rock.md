@@ -1,5 +1,5 @@
 ---
-title: Houses on Rocks
+title: House on Rock
 date: 2020-02-29T20:04:10.000Z
 description: "Just in: small batch of Jamaican Blue Mountain in store next week"
 ---
