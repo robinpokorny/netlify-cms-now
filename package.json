@@ -8,5 +8,11 @@
     "@now/node": "^1.4.1",
     "@types/simple-oauth2": "^2.5.2",
     "simple-oauth2": "^2.5.2"
+  },
+  "engines": {
+    "node": "^16"
+  },
+  "volta": {
+    "node": "16.16.0"
   }
 }
