@@ -5,9 +5,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@now/node": "^1.4.1",
-    "@types/simple-oauth2": "^2.5.2",
-    "simple-oauth2": "^2.5.2"
+    "@now/node": "^1.8.5",
+    "@types/simple-oauth2": "^4.1.1",
+    "simple-oauth2": "^4.3.0"
   },
   "engines": {
     "node": "^16"
